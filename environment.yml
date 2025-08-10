@@ -1,0 +1,94 @@
+name: asmr-ai
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  # Python基础环境
+  - python=3.9
+  - pip
+  
+  # Web框架和API
+  - fastapi
+  - uvicorn
+  - websockets
+  - requests
+  - aiohttp
+  - flask
+  
+  # 数据库和存储
+  - sqlite
+  - sqlalchemy
+  - alembic
+  
+  # 音频处理
+  - ffmpeg
+  - librosa
+  - soundfile
+  - pydub
+  - pyaudio
+  - numpy
+  - scipy
+  
+  # 图像处理和OCR
+  - opencv
+  - pillow
+  - pytesseract
+  
+  # AI和机器学习
+  - openai
+  - transformers
+  - torch
+  - torchaudio
+  
+  # 自动化和浏览器控制
+  - selenium
+  - beautifulsoup4
+  - lxml
+  
+  # 数据处理
+  - pandas
+  - pyyaml
+  - python-dotenv
+  
+  # 开发工具
+  - pytest
+  - black
+  - flake8
+  - jupyter
+  
+  # 系统工具
+  - psutil
+  - schedule
+  
+  # pip安装的包
+  - pip:
+    - azure-cognitiveservices-speech
+    - edge-tts
+    - gTTS
+    - python-multipart
+    - python-socketio
+    - eventlet
+    - gevent
+    - watchdog
+    - colorlog
+    - rich
+    - typer
+    - streamlit
+    - gradio
+    - playwright
+    - undetected-chromedriver
+    - douyin-downloader
+    - jieba
+    - pypinyin
+    - mutagen
+    - eyed3
+    - tinytag
+    - python-magic
+    - mss
+    - keyboard
+    - mouse
+    - playsound
+    - simpleaudio
+    - pygame
+    - vlc-python
+    - python-vlc

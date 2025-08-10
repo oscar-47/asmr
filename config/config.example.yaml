@@ -1,0 +1,185 @@
+# ASMR AI 虚拟主播系统配置文件示例
+# 复制此文件为 config.yaml 并填入实际配置
+
+# 系统基础配置
+system:
+  name: "ASMR AI 虚拟主播"
+  version: "1.0.0"
+  debug: true
+  log_level: "INFO"
+
+# 数据库配置
+database:
+  type: "sqlite"
+  path: "data/asmr_ai.db"
+  backup_enabled: true
+  backup_interval: 3600  # 秒
+
+# Web服务配置
+web:
+  host: "0.0.0.0"
+  port: 8000
+  cors_origins: ["*"]
+  static_files: "assets"
+
+# 抖音平台配置
+douyin:
+  enabled: true
+  username: "your_douyin_username"  # 请填入您的抖音用户名
+  password: "your_douyin_password"  # 请填入您的抖音密码
+  room_id: ""  # 直播间ID，可选
+  auto_login: true
+  headless: false  # 是否无头模式运行浏览器
+  
+  # 连接配置
+  connection:
+    retry_times: 3
+    retry_interval: 5
+    heartbeat_interval: 30
+    timeout: 10
+
+# AI配置
+ai:
+  # OpenAI配置
+  openai:
+    api_key: "your_openai_api_key"  # 请填入您的OpenAI API密钥
+    model: "gpt-3.5-turbo"
+    max_tokens: 150
+    temperature: 0.8
+    
+  # 对话配置
+  dialogue:
+    max_history: 10
+    response_probability: 0.7  # 回应弹幕的概率
+    min_interval: 3  # 最小回应间隔（秒）
+    
+  # 人设配置
+  persona:
+    name: "小樱"
+    personality: "温柔可爱的ASMR主播"
+    speaking_style: "温柔亲切，偶尔撒娇"
+    interests: ["ASMR", "音乐", "聊天"]
+    catchphrases: ["呐~", "嘿嘿", "好的哦~"]
+
+# TTS语音合成配置
+tts:
+  provider: "edge"  # 可选: edge, azure, openai
+  
+  # Edge TTS配置
+  edge:
+    voice: "zh-CN-XiaoxiaoNeural"
+    rate: "+0%"
+    pitch: "+0Hz"
+    
+  # Azure TTS配置（如果使用）
+  azure:
+    api_key: "your_azure_speech_key"
+    region: "eastus"
+    voice: "zh-CN-XiaoxiaoNeural"
+
+# 音频配置
+audio:
+  # 播放配置
+  playback:
+    device: "default"
+    sample_rate: 44100
+    channels: 2
+    buffer_size: 1024
+    
+  # 音频处理
+  processing:
+    normalize: true
+    fade_in_duration: 0.5
+    fade_out_duration: 0.5
+    max_volume: 0.8
+    
+  # 文件存储
+  storage:
+    base_path: "assets/audio"
+    max_file_size: 50  # MB
+    allowed_formats: ["mp3", "wav", "m4a", "ogg"]
+
+# 礼物识别配置
+gift_recognition:
+  enabled: true
+  method: "screen_capture"  # 可选: screen_capture, api
+  
+  # 屏幕截图配置
+  screen_capture:
+    region: [0, 0, 1920, 1080]  # 截图区域 [x, y, width, height]
+    interval: 1.0  # 截图间隔（秒）
+    
+  # OCR配置
+  ocr:
+    engine: "tesseract"
+    language: "chi_sim"
+    confidence_threshold: 0.7
+
+# 礼物映射配置
+gift_mapping:
+  # 礼物类型与音频的映射关系
+  mappings:
+    "玫瑰": "rose_thanks.mp3"
+    "爱心": "heart_thanks.mp3"
+    "火箭": "rocket_wow.mp3"
+    "跑车": "car_amazing.mp3"
+    
+  # 默认音频
+  default_audio: "default_thanks.mp3"
+  
+  # 触发规则
+  rules:
+    min_gift_value: 0.1  # 最小礼物价值
+    max_queue_size: 10   # 最大队列长度
+    priority_multiplier: 2.0  # VIP用户优先级倍数
+
+# ASMR内容配置
+asmr:
+  # 触发器配置
+  triggers:
+    tapping: ["glass_tap.mp3", "wood_tap.mp3"]
+    brushing: ["soft_brush.mp3", "makeup_brush.mp3"]
+    whispering: ["gentle_whisper.mp3", "close_whisper.mp3"]
+    
+  # 场景配置
+  scenarios:
+    relaxation:
+      background: "rain_ambient.mp3"
+      triggers: ["tapping", "whispering"]
+      duration: 300
+      
+    study:
+      background: "library_ambient.mp3"
+      triggers: ["tapping"]
+      duration: 600
+
+# 弹幕过滤配置
+chat_filter:
+  enabled: true
+  
+  # 敏感词过滤
+  sensitive_words: ["spam", "广告", "刷屏"]
+  
+  # 用户过滤
+  blocked_users: []
+  
+  # 内容过滤
+  min_length: 2
+  max_length: 100
+  duplicate_threshold: 3  # 重复内容阈值
+
+# 监控配置
+monitoring:
+  enabled: true
+  metrics_interval: 60  # 指标收集间隔（秒）
+  
+  # 性能监控
+  performance:
+    cpu_threshold: 80
+    memory_threshold: 80
+    disk_threshold: 90
+    
+  # 业务监控
+  business:
+    max_response_time: 5  # 最大响应时间（秒）
+    max_queue_length: 50  # 最大队列长度
